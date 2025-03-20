@@ -1,0 +1,93 @@
+#include <stdio.h>
+
+void comparar(char *nome1, char *nome2, float valor1, float valor2, char *atributo) {
+    printf("\nComparando %s:\n", atributo);
+    printf("Carta 1 (%s): %.2f\n", nome1, valor1);
+    printf("Carta 2 (%s): %.2f\n", nome2, valor2);
+
+    printf("Resultado: %s venceu!\n", (valor1 > valor2) ? nome1 : (valor1 < valor2) ? nome2 : "Empate");
+}
+
+int main() {
+    char cidade1[50], cidade2[50];
+    int populacao1, populacao2, pontos1, pontos2, escolha1, escolha2;
+    float area1, area2, pib1, pib2, percapita1, percapita2, superpodercarta1, superpodercarta2;
+
+    // Leitura dos dados da carta 1
+    printf("Insira os dados da carta 1\n");
+    printf("Nome da cidade: ");
+    scanf(" %[^\n]s", cidade1);
+    printf("População: ");
+    scanf("%d", &populacao1);
+    printf("Área (km²): ");
+    scanf("%f", &area1);
+    printf("PIB (bilhões de reais): ");
+    scanf("%f", &pib1);
+    printf("Pontos Turísticos: ");
+    scanf("%d", &pontos1);
+
+    // Cálculos para carta 1
+    percapita1 = (populacao1 != 0) ? (pib1 * 1000000000) / populacao1 : 0;
+    superpodercarta1 = populacao1 + area1 + pib1 + percapita1 + pontos1;
+
+    // Leitura dos dados da carta 2
+    printf("\nInsira os dados da carta 2\n");
+    printf("Nome da cidade: ");
+    scanf(" %[^\n]s", cidade2);
+    printf("População: ");
+    scanf("%d", &populacao2);
+    printf("Área (km²): ");
+    scanf("%f", &area2);
+    printf("PIB (bilhões de reais): ");
+    scanf("%f", &pib2);
+    printf("Pontos Turísticos: ");
+    scanf("%d", &pontos2);
+
+    // Cálculos para carta 2
+    percapita2 = (populacao2 != 0) ? (pib2 * 1000000000) / populacao2 : 0;
+    superpodercarta2 = populacao2 + area2 + pib2 + percapita2 + pontos2;
+
+    // Escolha dos atributos
+    printf("\nEscolha dois atributos para comparar:\n");
+    printf("1 - População\n - Área\n - PIB\n - Pontos turísticos\n - PIB per capita\n - Superpoder\n");
+    printf("Escolha o primeiro atributo: ");
+    scanf("%d", &escolha1);
+    printf("Escolha o segundo atributo: ");
+    scanf("%d", &escolha2);
+
+    // Determinar os valores dos atributos escolhidos usando switch e operador ternário
+    float valor1_carta1, valor1_carta2, valor2_carta1, valor2_carta2;
+    char atributo1[20], atributo2[20];
+
+    switch (escolha1) {
+        case 1: valor1_carta1 = populacao1; valor1_carta2 = populacao2; printf(atributo1, "População"); break;
+        case 2: valor1_carta1 = area1; valor1_carta2 = area2; printf(atributo1, "Área"); break;
+        case 3: valor1_carta1 = pib1; valor1_carta2 = pib2; printf(atributo1, "PIB"); break;
+        case 4: valor1_carta1 = pontos1; valor1_carta2 = pontos2; printf(atributo1, "Pontos Turísticos"); break;
+        case 5: valor1_carta1 = percapita1; valor1_carta2 = percapita2; printf(atributo1, "PIB per capita"); break;
+        case 6: valor1_carta1 = superpodercarta1; valor1_carta2 = superpodercarta2; printf(atributo1, "Superpoder"); break;
+        default: printf("Opção inválida para o primeiro atributo!\n"); return 1;
+    }
+
+    switch (escolha2) {
+        case 1: valor2_carta1 = populacao1; valor2_carta2 = populacao2; printf(atributo2, "População"); break;
+        case 2: valor2_carta1 = area1; valor2_carta2 = area2; printf(atributo2, "Área"); break;
+        case 3: valor2_carta1 = pib1; valor2_carta2 = pib2; printf(atributo2, "PIB"); break;
+        case 4: valor2_carta1 = pontos1; valor2_carta2 = pontos2; printf(atributo2, "Pontos Turísticos"); break;
+        case 5: valor2_carta1 = percapita1; valor2_carta2 = percapita2; printf(atributo2, "PIB per capita"); break;
+        case 6: valor2_carta1 = superpodercarta1; valor2_carta2 = superpodercarta2; printf(atributo2, "Superpoder"); break;
+        default: printf("Opção inválida para o segundo atributo!\n"); return 1;
+    }
+
+    // Comparação dos atributos escolhidos
+    comparar(cidade1, cidade2, valor1_carta1, valor1_carta2, atributo1);
+    comparar(cidade1, cidade2, valor2_carta1, valor2_carta2, atributo2);
+
+    return 0;
+}
+
+
+
+
+     
+
